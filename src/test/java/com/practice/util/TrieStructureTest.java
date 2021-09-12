@@ -4,6 +4,7 @@ import com.practice.model.Trie;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,5 +66,17 @@ class TrieStructureTest {
 
         assertThat(records).isNotNull();
         assertThat(records).hasSize(size);
+    }
+
+    @Test
+    public void test_searchingWordsInLongStringsRecordFile_Returns_MultipleRecordNumbers_ReferencingLastLetter() {
+
+        Trie trie = TrieStructure.readData("src/test/resources/multipleRecordsWithLongerStringsFileWithMultipleMatchingWords.csv");
+
+        Set<String> records = trie.search("musk");
+
+        assertThat(records).isNotNull();
+        assertThat(records).hasSize(3);
+        assertThat(records).contains("1", "3", "5");
     }
 }

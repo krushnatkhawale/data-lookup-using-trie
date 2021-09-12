@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import static java.util.Collections.emptySet;
+import static java.util.function.Predicate.not;
 import static java.util.stream.Stream.of;
 
 public class Trie {
@@ -24,7 +25,9 @@ public class Trie {
 
     private String[] extractWords(String string) {
         return of(string.split(","))
-                //    .flatMap(line -> of(line.split(" ")))
+                .flatMap(line -> of(line.split(" ")))
+                .map(String::strip)
+                .filter(not(String::isEmpty))
                 .toArray(String[]::new);
     }
 
