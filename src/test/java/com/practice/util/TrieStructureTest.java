@@ -14,7 +14,7 @@ class TrieStructureTest {
     @Test
     public void test_TrieStructureReadsFileAndReturnsTrieRoot() {
 
-        Trie trie = TrieStructure.readData("src/test/resources/singleLetterCheckInMultipleRecords.csv");
+        Trie trie = TrieStructure.parseFile("src/test/resources/singleLetterCheckInMultipleRecords.csv");
 
         assertThat(trie).isNotNull();
     }
@@ -22,7 +22,7 @@ class TrieStructureTest {
     @Test
     public void test_ReturnsRecords_For_SingleLetterWordInMultipleRecords() {
 
-        Trie trie = TrieStructure.readData("src/test/resources/singleLetterCheckInMultipleRecords.csv");
+        Trie trie = TrieStructure.parseFile("src/test/resources/singleLetterCheckInMultipleRecords.csv");
 
         Set<String> records = trie.search("h");
 
@@ -33,7 +33,7 @@ class TrieStructureTest {
     @Test
     public void test_For_MultiLetterWordInMultipleRecords_ReturnsRecords_ReferencingLastLetter() {
 
-        Trie trie = TrieStructure.readData("src/test/resources/multiLetterCheckInMultipleRecords.csv");
+        Trie trie = TrieStructure.parseFile("src/test/resources/multiLetterCheckInMultipleRecords.csv");
 
         Set<String> records = trie.search("hi");
 
@@ -45,7 +45,7 @@ class TrieStructureTest {
     @Test
     public void test_searchingMultiLetterWordInSingleRecordFile_Returns_OnlyOneRecordNumber_ReferencingLastLetter() {
 
-        Trie trie = TrieStructure.readData("src/test/resources/singleRecordFileWithMultipleMatchingWords.csv");
+        Trie trie = TrieStructure.parseFile("src/test/resources/singleRecordFileWithMultipleMatchingWords.csv");
 
         Set<String> records = trie.search("hi");
 
@@ -60,7 +60,7 @@ class TrieStructureTest {
             String name, int size
     ) {
 
-        Trie trie = TrieStructure.readData("src/test/resources/multipleRecordsFileWithMultipleMatchingWords.csv");
+        Trie trie = TrieStructure.parseFile("src/test/resources/multipleRecordsFileWithMultipleMatchingWords.csv");
 
         Set<String> records = trie.search(name);
 
@@ -71,7 +71,7 @@ class TrieStructureTest {
     @Test
     public void test_searchingWordsInLongStringsRecordFile_Returns_MultipleRecordNumbers_ReferencingLastLetter() {
 
-        Trie trie = TrieStructure.readData("src/test/resources/multipleRecordsWithLongerStringsFileWithMultipleMatchingWords.csv");
+        Trie trie = TrieStructure.parseFile("src/test/resources/multipleRecordsWithLongerStringsFileWithMultipleMatchingWords.csv");
 
         Set<String> records = trie.search("musk");
 
