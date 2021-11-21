@@ -19,11 +19,11 @@ public class DataController {
 
     @GetMapping("/data")
     public List<String> getData() {
-        return dataLoadService.getData();
+        return dataLoadService.getDataFuture();
     }
 
     @GetMapping("/search")
     public Set<String> getTrieSearch(@RequestParam String filterWord) {
-        return dataLoadService.getTrie().search(filterWord);
+        return dataLoadService.getTrieFuture().search(filterWord);
     }
 }
